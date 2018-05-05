@@ -1,6 +1,6 @@
 import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  title: faker.name.jobTitle(),
-  description: faker.lorem.paragraph()
+  title: faker.name.jobTitle,
+  description: faker.lorem.paragraph
 });
