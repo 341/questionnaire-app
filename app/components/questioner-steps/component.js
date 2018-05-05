@@ -6,6 +6,8 @@ import {inject as service} from '@ember/service';
 // import Icons from 'hjelpepunktet-app/mixins/icon-mixin';
 //Icons,
 export default Component.extend({
+
+  classNames: ['shadow', 'question-container'],
   store: service(),
 
   step: false, //current view
