@@ -6,33 +6,37 @@ import {inject as service} from '@ember/service';
 // import Icons from 'hjelpepunktet-app/mixins/icon-mixin';
 //Icons,
 export default Component.extend({
-  step: false,
-  steps: false,
-  type: alias('step.type'),
-  pageID: 1,
-
   store: service(),
+
+  step: false, //current view
+  steps: false, //array of questions
+  type: alias('step.type'), // type of question
 
 
   firstObject: readOnly('steps.firstObject'),
   lastObject: readOnly('steps.lastObject'),
 
-  finalStep: computed('steps.[]', function () {
+  //final step
+  finalStep: computed('steps.[]', 'step', function () {
     return this.maxStep();
   }),
 
+  //show thank you step
   completed: computed('steps.[]', 'step', function () {
-    return get(this, 'step') === get(this, 'length')
+    return get(this, 'step') === get(this, 'length');
   }),
 
+  // how many steps
   length: computed('steps.[]', function () {
     return get(this, 'steps.length');
   }),
 
+  //control the index which step to show
   index: computed('step', function () {
     return parseInt(this.getCurrentStep());
   }),
 
+  //init set first step
   init() {
     this._super(...arguments);
 
@@ -40,26 +44,32 @@ export default Component.extend({
     this.setStep(firstStep);
   },
 
+  //set step
   setStep(step) {
     set(this, 'step', step);
   },
 
+  //check if is first step
   firstStep: computed('steps.[]', 'step', function () {
     return this.getStepByIndex(get(this, 'firstObject')) === this.getStepByIndex(get(this, 'step'));
   }),
 
+  //get step by index
   getStepByIndex(index) {
     return get(this, 'steps').indexOf(index);
   },
 
+  //get step at index
   getStep(index) {
     return get(this, 'steps').objectAt(index);
   },
 
+  //last step in steps
   maxStep() {
     return parseInt(this.getCurrentStep()) === get(this, 'steps.length') - 1;
   },
 
+  //get current step
   getCurrentStep() {
     return get(this, 'steps').indexOf(get(this, 'step'));
   },
@@ -98,16 +108,13 @@ export default Component.extend({
       this.setStep(next);
     }
   },
-
   /* Prev Controller*/
+
   saveForm(model) {
 
   },
   actions: {
-    setIcon(icon) {
-      let category = get(this, 'category');
-      category.set('icon', icon);
-    },
+
     prevStep() {
       this.prevStep();
     },

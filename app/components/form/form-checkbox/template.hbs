@@ -1,0 +1,6 @@
+{{#each values as |data index|}}
+  <div class="form-group">
+    <label for="{{name}}_{{index}}"> {{data.description}} </label>
+    <input type="checkbox" id="{{name}}_{{index}}" checked={{data.checked}} onclick={{action (mut data.checked) value="target.checked"}}>
+  </div>
+{{/each}}

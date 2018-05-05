@@ -1,0 +1,6 @@
+{{#each values as |data index|}}
+  <div class="form-group">
+    <label for="{{name}}_{{index}}"> {{data.description}} </label>
+    <input type="radio" id="{{name}}_{{index}}" name={{name}} checked={{data.checked}} onclick={{action 'setValue' data}}>
+  </div>
+{{/each}}
