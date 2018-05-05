@@ -16,10 +16,41 @@ module.exports = function(environment) {
         Date: false
       }
     },
+    contentSecurityPolicy: {
+      'connect-src': [
+        process.env.API_HOST,
+        process.env.APP_HOST,
+        'self'
+      ].join(' '),
+      'img-src': [
+        'data:',
+        process.env.APP_HOST,
+        process.env.API_HOST,
+        'self',
+      ].join(' '),
+      'default-src': [
+        process.env.APP_HOST
+      ].join(' '),
+      'script-src': [
+        process.env.APP_HOST,
+        'self',
+      ].join(' '),
+      'media-src': [
+        'self',
+        process.env.APP_HOST,
+        process.env.API_HOST].join(' '),
+      'style-src': [
+        'self',
+        process.env.APP_HOST,
+        '\'unsafe-inline\''
+      ].join(' ')
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      API_HOST: process.env.API_HOST,
+      API_NAMESPACE: process.env.API_NAMESPACE
     }
   };
 
