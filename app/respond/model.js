@@ -1,4 +1,4 @@
-import Model from 'ember-data/model';;
+import Model from 'ember-data/model';
 import {belongsTo, hasMany} from 'ember-data/relationships';
 
 export const schema = {

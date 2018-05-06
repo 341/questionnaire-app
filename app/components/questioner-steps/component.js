@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import {computed, get, set} from '@ember/object';
-import {readOnly, alias, mapBy, max} from "@ember/object/computed";
+import {readOnly, alias } from "@ember/object/computed";
 import {inject as service} from '@ember/service';
 
 export default Component.extend({
@@ -54,7 +54,7 @@ export default Component.extend({
 
   //get step by index
   getStepByIndex(index) {
-    return get(this, 'steps').indexOf(index);
+    return get(this, 'steps') ? get(this, 'steps').indexOf(index) : null;
   },
 
   //get step at index
@@ -69,7 +69,7 @@ export default Component.extend({
 
   //get current step
   getCurrentStep() {
-    return get(this, 'steps').indexOf(get(this, 'step'));
+    return get(this, 'steps')  ? get(this, 'steps').indexOf(get(this, 'step')) : null;
   },
 
   /* Next Controller*/
@@ -125,7 +125,7 @@ export default Component.extend({
       respond.set('questioner', model); //set relation of questioner and responder
 
       respond.save().then((_respond) => { // store responder
-        steps.forEach(function (item, index) { // iterate selected options per question
+        steps.forEach(function (item) { // iterate selected options per question
           let answer = store.createRecord('answer', {'respond': _respond});
           answer.setAnswer(item);//set model
           answer.save().then(() => { //store in answer
