@@ -14,6 +14,9 @@ export default function() {
 
     this.resource('questioners');
     this.resource('questions');
+    this.resource('answers');
+    this.resource('clients');
+    this.resource('responds');
 
   /*
     Shorthand cheatsheet:

@@ -2,9 +2,9 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany} from 'ember-data/relationships';
 import {computed, get} from '@ember/object';
-import QuestionType from 'questionnaire-app/mixins/question-type';
+// import QuestionType from 'questionnaire-app/mixins/question-type';
 
-export default Model.extend(QuestionType, {
+export default Model.extend({
 
   title: attr('string'),
   description: attr('string'),

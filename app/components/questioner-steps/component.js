@@ -3,8 +3,6 @@ import {computed, get, set} from '@ember/object';
 import {readOnly, alias, mapBy, max} from "@ember/object/computed";
 import {inject as service} from '@ember/service';
 
-// import Icons from 'hjelpepunktet-app/mixins/icon-mixin';
-//Icons,
 export default Component.extend({
 
   classNames: ['shadow', 'question-container'],
@@ -24,9 +22,7 @@ export default Component.extend({
   }),
 
   //show thank you step
-  completed: computed('steps.[]', 'step', function () {
-    return get(this, 'step') === get(this, 'length');
-  }),
+  completed: false,
 
   // how many steps
   length: computed('steps.[]', function () {
@@ -112,9 +108,6 @@ export default Component.extend({
   },
   /* Prev Controller*/
 
-  saveForm(model) {
-
-  },
   actions: {
 
     prevStep() {
@@ -124,6 +117,22 @@ export default Component.extend({
       this.nextStep();
     },
     save() {
+      let store = get(this, 'store'); //load store service
+      let model = get(this, 'model'); //load questioner model
+      let steps = get(this, 'steps'); //load questions of questioner
+
+      let respond = store.createRecord('respond');//create respond model
+      respond.set('questioner', model); //set relation of questioner and responder
+
+      respond.save().then((_respond) => { // store responder
+        steps.forEach(function (item, index) { // iterate selected options per question
+          let answer = store.createRecord('answer', {'respond': _respond});
+          answer.setAnswer(item);//set model
+          answer.save().then(() => { //store in answer
+          });
+        });
+        set(this,'completed',true)
+      });
 
     }
   }

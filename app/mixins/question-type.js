@@ -3,7 +3,6 @@ import {get, computed} from '@ember/object';
 
 export default Mixin.create({
   types: [
-
     {
       type: 'text-area',
       template: {

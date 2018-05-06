@@ -1,14 +1,21 @@
-<div class="page-container">
+{{#unless completed}}
+  <!--Questioner Title -->
+  <h1 class="question-container__title">{{model.title}}</h1>
+  <!--Questioner Description -->
+  <h5 class="question-container__description">{{model.title}}</h5>
+  <div class="divider my-4"></div>
+  <!-- Question Title -->
+  <h3 class="question-container__sub-title">{{step.title}}</h3>
+  <!-- Question Description -->
+  <p class="question-container__sub-description">{{step.description}}</p>
 
-  <h1>{{model.title}}</h1>
-  <h3>{{step.title}}</h3>
-  <p>{{step.description}}</p>
-
-  <div class="single-case-description">
+  <!-- Question Type -->
+  <div class="question-container__options">
     {{component step.component model=step}}
   </div>
 
-  <div class="page-actions my-5">
+  <!-- Questions Navigation -->
+  <div class="question-container__actions mt-5">
     {{#if prev}}
       <button class="btn btn-secondary mr-auto" {{action "prevStep"}}>
         Prev
@@ -27,4 +34,6 @@
 
     <div class="clearfix"></div>
   </div>
-</div>
+{{else}}
+  <h1 class="text-center">Thank you.</h1>
+{{/unless}}

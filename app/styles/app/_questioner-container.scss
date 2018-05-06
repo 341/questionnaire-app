@@ -16,7 +16,16 @@
   }
 }
 
+.divider{
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid $input-border-color;
+}
+
 .question-container{
   width: 100%;
   padding: 20px;
+  .question-container_title{
+
+  }
 }
