@@ -1,5 +1,5 @@
-import Component from '@ember/component';
+import Form from '../form';
 
-export default Component.extend({
-  tagName:'',
+export default Form.extend({
+
 });

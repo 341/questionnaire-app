@@ -1,20 +1,28 @@
 import Component from '@ember/component';
 import {computed, get, set} from '@ember/object';
-import {readOnly, alias } from "@ember/object/computed";
+import {readOnly, alias} from "@ember/object/computed";
 import {inject as service} from '@ember/service';
+import {task, timeout} from 'ember-concurrency';
 
 export default Component.extend({
 
   classNames: ['shadow', 'question-container'],
+  // classNameBindings:['step.loading:loading'],
   store: service(),
 
   step: false, //current view
   steps: false, //array of questions
   type: alias('step.type'), // type of question
 
+  //transition between steps
+  loading: task(function* (step) {
+    set(step, 'loading', true);
+    yield timeout(500);
+    set(step, 'loading', false);
+  }).restartable(),
 
-  firstObject: readOnly('steps.firstObject'),
-  lastObject: readOnly('steps.lastObject'),
+  firstObject: readOnly('steps.firstObject'), //get first step from array
+  lastObject: readOnly('steps.lastObject'), //get last step from array
 
   //final step
   finalStep: computed('steps.[]', 'step', function () {
@@ -45,6 +53,7 @@ export default Component.extend({
   //set step
   setStep(step) {
     set(this, 'step', step);
+    get(this, 'loading').perform(step);
   },
 
   //check if is first step
@@ -69,7 +78,7 @@ export default Component.extend({
 
   //get current step
   getCurrentStep() {
-    return get(this, 'steps')  ? get(this, 'steps').indexOf(get(this, 'step')) : null;
+    return get(this, 'steps') ? get(this, 'steps').indexOf(get(this, 'step')) : null;
   },
 
   /* Next Controller*/
@@ -131,7 +140,7 @@ export default Component.extend({
           answer.save().then(() => { //store in answer
           });
         });
-        set(this,'completed',true)
+        set(this, 'completed', true)
       });
 
     }

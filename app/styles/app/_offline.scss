@@ -1,0 +1,20 @@
+.offline-container{
+  @extend .vh-100;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  .offline-container__image{
+    display: block;
+    margin: 0 auto 2rem;
+    width: 50px;
+  }
+  .offline-container__title{
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .offline-container__description{
+    text-align: center;
+  }
+}

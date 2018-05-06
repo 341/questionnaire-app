@@ -33,6 +33,7 @@ export default Model.extend({
   selected: attr('array'),
   values: attr('json'),
   value: attr('string'),
+  loading: attr('boolean',{defaultValue: false}),
 
   component: computed('type', function () {
     let _type = get(this, 'type');

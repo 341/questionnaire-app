@@ -1,18 +1,12 @@
-{{#unless completed}}
+<div class="question-container__content {{if completed 'completed' ''}}">
   <!--Questioner Title -->
   <h1 class="question-container__title">{{model.title}}</h1>
   <!--Questioner Description -->
   <h5 class="question-container__description">{{model.title}}</h5>
   <div class="divider my-4"></div>
-  <!-- Question Title -->
-  <h3 class="question-container__sub-title">{{step.title}}</h3>
-  <!-- Question Description -->
-  <p class="question-container__sub-description">{{step.description}}</p>
 
-  <!-- Question Type -->
-  <div class="question-container__options">
-    {{component step.component model=step}}
-  </div>
+  <!-- Question -->
+  {{component step.component model=step completed=completed}}
 
   <!-- Questions Navigation -->
   <div class="question-container__actions mt-5">
@@ -34,6 +28,5 @@
 
     <div class="clearfix"></div>
   </div>
-{{else}}
-  <h1 class="text-center">Thank you.</h1>
-{{/unless}}
+</div>
+{{questioner-finalstep completed=completed}}

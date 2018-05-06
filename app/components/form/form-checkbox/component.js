@@ -1,9 +1,8 @@
-import Component from '@ember/component';
+import Form from '../form';
 import { observer, set, get} from '@ember/object';
 import {alias} from '@ember/object/computed';
 
-export default Component.extend({
-  tagName:'',
+export default Form.extend({
   name: alias('model.name'),
   values: alias('model.values'),
   type: alias('model.type'),

@@ -1,3 +1,8 @@
+<!-- Question Title -->
+<h3 class="question-container__sub-title">{{model.title}}</h3>
+<!-- Question Description -->
+<p class="question-container__sub-description">{{model.description}}</p>
+
 {{#each values as |data index|}}
   <div class="custom-control custom-checkbox">
     <input type="checkbox" id="{{name}}_{{index}}" class="custom-control-input" checked={{data.checked}} onclick={{action (mut data.checked) value="target.checked"}}>
