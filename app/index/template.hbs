@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto d-flex justify-content-center align-items-center vh-100">
+      <div class="questioner-container ">
+        <h1 class="questioner-title">{{model.title}}?</h1>
+        <div class="questioner-description">
+          <p>
+            {{model.description}}
+          </p>
+        </div>
+        <button class="btn btn-primary questioner-action" {{action "toRoute" model}}>
+          Start
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

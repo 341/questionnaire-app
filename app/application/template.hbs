@@ -1,0 +1,19 @@
+{{#if isChecking}}
+  {{loader-line-scale}}
+{{else}}
+  <main>
+    {{#if isOnline}}
+      {{outlet}}
+    {{else}}
+      <div class="offline-container">
+        <img src="/assets/images/cloud-off.svg" alt="offline" class="offline-container__image">
+        <h1 class="offline-container__title">
+          Offline
+        </h1>
+        <p class="offline-container__description">
+          Please try again later
+        </p>
+      </div>
+    {{/if}}
+  </main>
+{{/if}}

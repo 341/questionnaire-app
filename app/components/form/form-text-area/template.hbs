@@ -1,0 +1,7 @@
+<!-- Question Title -->
+<h3 class="question-container__sub-title">{{model.title}}</h3>
+<!-- Question Description -->
+<p class="question-container__sub-description">{{model.description}}</p>
+<div class="form-group">
+  <textarea value={{model.value}} id={{name}} class="form-control" rows="3" oninput={{action (mut model.value) value="target.value"}}></textarea>
+</div>
